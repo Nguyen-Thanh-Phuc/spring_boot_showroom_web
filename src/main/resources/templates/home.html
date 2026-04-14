@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/w3.css}">
+    <link rel="stylesheet" th:href="@{/showroom.css}">
+    <title th:text="|${companyName.shortName} - ${companyName.longName}|">Cedar Ridge - Cedar Ridge Custom Homes</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        #home,
+        #products,
+        #about {
+            scroll-margin-top: 72px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{navbar}"></div>
+<div th:replace="~{header}"></div>
+<div class="w3-content w3-padding" style="max-width:1564px">
+    <div th:replace="~{products}"></div>
+    <div th:replace="~{about}"></div>
+</div>
+<div th:replace="~{footer}"></div>
+</body>
+</html>

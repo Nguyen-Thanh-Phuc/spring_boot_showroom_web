@@ -1,0 +1,10 @@
+<div class="w3-container w3-padding-32" id="about" xmlns:th="http://www.thymeleaf.org">
+    <h3 class="w3-xxlarge w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p th:utext="${aboutContent}" style="white-space: pre-line;">
+        Cedar Ridge Custom Homes designs and builds modern, energy-efficient residences across the region.<br>
+        Our showroom highlights material selections, lighting, and smart-home options so clients can make confident, informed decisions.<br><br>
+        We manage the full process from concept to completion, working with trusted architects and craftspeople.<br>
+        Visit us to explore finish packages, compare layouts, and discuss your project timeline.
+    </p>
+    <a th:if="${isUserLoggedIn}" th:href="@{/edit-about-content}" class="w3-button w3-blue">Edit</a>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/w3.css}">
+    <link rel="stylesheet" th:href="@{/showroom.css}">
+    <title th:text="|${companyName.shortName} - ${companyName.longName} - Edit general info|"></title>
+</head>
+<body>
+<div th:replace="~{navbar}"></div>
+
+<div class="w3-content w3-padding w3-card" style="max-width:600px">
+    <div class="w3-container w3-padding-32">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Edit general info</h3>
+        <form method="post" enctype="multipart/form-data" th:action="@{/edit-general-info}">
+            <p>
+                <label for="companyShortName">Company short name</label>
+                <input type="text" id="companyShortName" name="companyShortName" required
+                       th:value="${companyName.shortName}" class="w3-input w3-border fixed-input">
+            </p>
+            <p>
+                <label for="companyLongName">Company long name</label>
+                <input type="text" id="companyLongName" name="companyLongName" required
+                       th:value="${companyName.longName}" class="w3-input w3-border fixed-input">
+            </p>
+            <p>
+                <label for="featureImage">Feature image (.jpg) - No file chosen means no update</label>
+                <input type="file" id="featureImage" name="featureImage" accept=".jpg"
+                       class="w3-input w3-border fixed-input">
+            </p>
+
+            <p th:if="${errorMsg}" th:text="${errorMsg}" class="w3-text-red"></p>
+            <div class="w3-center">
+                <button type="submit" class="w3-button w3-black">Save</button>
+                <a th:href="@{/}" class="w3-button w3-black">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

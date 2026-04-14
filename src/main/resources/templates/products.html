@@ -1,0 +1,50 @@
+<div class="w3-container w3-padding-32" id="products">
+    <h3 class="w3-xxlarge w3-border-bottom w3-border-light-grey w3-padding-16">Real Estate</h3>
+</div>
+
+<div th:if="${isUserLoggedIn}" class="w3-padding" xmlns:th="http://www.thymeleaf.org">
+    <a class="w3-button w3-green" title="Add property" th:href="@{/add-product}">+</a>
+</div>
+
+<div class="w3-padding" xmlns:th="http://www.thymeleaf.org">
+    <form method="get" th:action="@{/}">
+        <div class="w3-row-padding">
+            <div class="w3-col m8 s12">
+                <input class="w3-input w3-border" type="text" name="q"
+                       placeholder="Search listings" th:value="${productQuery}">
+            </div>
+            <div class="w3-col m4 s12">
+                <button type="submit" class="w3-button w3-black w3-block">Search</button>
+            </div>
+        </div>
+        <div th:if="${productQuery != null and !productQuery.isBlank()}" class="w3-margin-top">
+            <a th:href="@{/}" class="w3-button w3-light-grey">Clear</a>
+        </div>
+    </form>
+</div>
+
+<div th:if="${products == null or products.isEmpty()}" class="w3-padding w3-text-grey"
+     xmlns:th="http://www.thymeleaf.org">
+    No listings available.
+</div>
+
+<div th:if="${products != null and !products.isEmpty()}"
+     th:each="i : ${#numbers.sequence(0, products.size() - 1, 4)}" class="w3-row-padding"
+     xmlns:th="http://www.thymeleaf.org">
+    <div th:each="j : ${#numbers.sequence(i, i + 3)}"
+         th:if="${j < products.size()}"
+         th:with="p = ${products[j]}"
+         class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+            <div th:text="${p.name}" class="w3-display-topleft w3-black w3-padding"></div>
+            <img th:src="@{'/files/products/' + ${p.id} + '.jpg'}" th:alt="${p.name}"
+                 class="product-image" style="width:100%">
+            <div th:if="${isUserLoggedIn}" class="w3-display-bottomright w3-row" style="width:100%">
+                <a class="w3-half w3-button w3-blue" th:href="@{/edit-product(id=${p.id})}">Edit</a>
+                <a class="w3-half w3-button w3-red"
+                   th:href="@{/delete-product(id=${p.id})}"
+                   onclick="return confirm('Are you sure to delete this listing?')">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

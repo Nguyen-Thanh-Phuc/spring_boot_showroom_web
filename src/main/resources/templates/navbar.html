@@ -1,0 +1,15 @@
+<div class="w3-top" xmlns:th="http://www.thymeleaf.org">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+        <a th:href="@{/#home}" class="w3-bar-item w3-button">
+            <b th:text="${companyName.shortName}">Cedar Ridge</b>
+            <span th:text="${companyName.longName}">Cedar Ridge Custom Homes</span>
+        </a>
+        <div class="w3-right">
+            <a th:href="@{/#products}" class="w3-bar-item w3-button w3-hide-small">Listings</a>
+            <a th:href="@{/#about}" class="w3-bar-item w3-button w3-hide-small">About</a>
+            <a th:href="${isUserLoggedIn} ? @{/logout} : @{/login}"
+               th:text="${isUserLoggedIn} ? 'Logout' : 'Login'"
+               class="w3-bar-item w3-button w3-text-red"></a>
+        </div>
+    </div>
+</div>

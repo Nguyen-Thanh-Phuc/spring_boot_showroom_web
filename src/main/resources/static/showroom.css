@@ -1,0 +1,14 @@
+.fixed-input {
+    margin-top: 8px;
+}
+
+.product-image {
+    display: block;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+    will-change: transform, box-shadow;
+}
+
+.product-image:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}

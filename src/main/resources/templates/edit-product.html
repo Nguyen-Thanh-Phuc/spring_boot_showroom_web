@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/w3.css}">
+    <link rel="stylesheet" th:href="@{/showroom.css}">
+    <title th:text="|${companyName.shortName} - ${companyName.longName} - Edit listing|">Edit listing</title>
+</head>
+<body>
+<div th:replace="~{navbar}"></div>
+<div class="w3-content w3-padding w3-card" style="max-width:500px">
+    <div class="w3-container w3-padding-32">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Edit listing</h3>
+        <form method="post" th:action="@{/edit-product}">
+            <input type="hidden" name="id" th:value="${productId}">
+            <p>
+                <label for="productName">Listing title</label>
+                <input type="text" id="productName" name="productName" th:value="${productName}"
+                       class="w3-input w3-border fixed-input" required>
+            </p>
+            <p th:if="${errorMsg}" th:text="${errorMsg}" class="w3-text-red"></p>
+            <div class="w3-center">
+                <button type="submit" class="w3-button w3-black">Save</button>
+                <a th:href="@{/#products}" class="w3-button w3-black">Cancel</a>
+            </div>
+        </form>
+        <div class="w3-margin-top">
+            <div class="w3-text-grey w3-small">Current image</div>
+            <img th:src="@{'/files/products/' + ${productId} + '.jpg'}" alt="Listing image" style="width:100%">
+        </div>
+    </div>
+</div>
+</body>
+</html>
